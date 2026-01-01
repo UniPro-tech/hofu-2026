@@ -1,2 +1,6 @@
 @import "tailwindcss";
 
+@theme {
+  --font-fude: "ah-hakushu-fude-thick-script", sans-serif;
+}
+

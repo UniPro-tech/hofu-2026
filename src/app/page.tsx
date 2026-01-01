@@ -27,36 +27,39 @@ function Logo() {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col min-h-screen bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100 font-fude">
       {/* Header */}
-      <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur shadow">
-        <div className="text-2xl font-mono">
-          抱負サイト
+      <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur-sm shadow-sm border-b border-stone-200 dark:border-stone-800">
+        <div className="flex items-center gap-3">
+          <div className="text-2xl font-bold text-stone-800 dark:text-stone-100">
+            2026年の抱負
+          </div>
         </div>
 
-        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center gap-2 text-sm text-stone-500 dark:text-stone-400 font-sans">
           <span>Powered by</span>
           <Logo />
         </div>
       </header>
 
       {/* Main */}
-      <main className="flex-grow px-6 py-10">
+      <main className="flex-grow px-6 py-12">
         {/* Hero */}
-        <section className="text-center space-y-4 mb-10">
-          <h1 className="text-2xl font-bold">
-            <div>新年あけましておめでとうございます！！</div>
-            {/*font変更予定*/}
-          </h1>
-          <p>
-            今年の抱負をみんなで共有しましょう！
-          </p>
+        <section className="text-center space-y-8 mb-20">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-stone-900 dark:text-stone-50 tracking-wide">
+              新年あけましておめでとうございます
+            </h1>
+            <p className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed">
+              2026年の抱負を、言葉にして残しましょう。
+            </p>
+          </div>
           {/* モーダル予定 ここで認証&投稿情報入力する　モーダルは別コンポーネントで処理する予定 */}
           <button
             type="button"
-            className="px-6 py-2 rounded bg-black text-white dark:bg-white dark:text-black hover:opacity-80 transition"
+            className="px-10 py-3 rounded-full bg-red-700 hover:bg-red-800 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 tracking-wider"
           >
-            投稿する
+            抱負を投稿する
           </button>
         </section>
 
@@ -67,31 +70,31 @@ export default function Home() {
             grid-cols-1
             sm:grid-cols-2
             lg:grid-cols-3
-            gap-4
+            gap-8
           "
         >
-          <article className="border rounded-lg p-4 shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
-            <div className="mb-2">
-              <div className="font-bold">今年の抱負は、</div>
-              <div className="text-2xl font-bold">毎日コードを書く！</div>
-              <div>人と関わってより色々な知識を共有したり、新しいツールや新しいコードのテンプレートなど作っていったりすることができたらいいなと、思います。</div>
+          <article className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="mb-6">
+              <div className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2 tracking-widest uppercase">Resolution</div>
+              <div className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-4 border-b border-stone-100 dark:border-stone-700 pb-2">毎日コードを書く！</div>
+              <div className="text-stone-600 dark:text-stone-300 leading-loose text-sm">人と関わってより色々な知識を共有したり、新しいツールや新しいコードのテンプレートなど作っていったりすることができたらいいなと、思います。</div>
             </div>
             
-            <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400">
-              <span>👤 Takoyaki</span>
-              <time>2026年1月1日</time>
+            <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500 pt-4 mt-auto">
+              <span className="font-medium">Takoyaki</span>
+              <time className="font-sans">2026.01.01</time>
             </div>
           </article>
 
-          <article className="border rounded-lg p-4 shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
-            <div className="mb-2">
-              <div className=" font-bold">今年の抱負は、</div>
-              <div className="text-2xl font-bold">新しい技術に挑戦する</div> 
-              <div>新しい技術に挑戦することで、より良いコードを書くことができると思います。</div>
+          <article className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="mb-6">
+              <div className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2 tracking-widest uppercase">Resolution</div>
+              <div className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-4 border-b border-stone-100 dark:border-stone-700 pb-2">新しい技術に挑戦する</div> 
+              <div className="text-stone-600 dark:text-stone-300 leading-loose text-sm">新しい技術に挑戦することで、より良いコードを書くことができると思います。</div>
             </div>
-            <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400">
-              <span>👤 Uniproject</span>
-              <time>2026年1月2日</time>
+            <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500 pt-4 mt-auto">
+              <span className="font-medium">Uniproject</span>
+              <time className="font-sans">2026.01.02</time>
             </div>
           </article>
 
@@ -100,8 +103,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-4 text-sm text-gray-400">
-        Copyright 2026 Uniproject
+      <footer className="text-center py-8 text-xs text-stone-400 dark:text-stone-600 border-t border-stone-200 dark:border-stone-800 mt-16 font-sans">
+        <div className="mb-2">Copyright 2026 Uniproject</div>
       </footer>
     </div>
   );
