@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { auth } from "@/auth";
 import PostResolutionButton from "@/components/PostResolutionButton";
+import { Post } from "@/libs/post";
 
 /** ロゴ（白 / 黒 自動切替） */
 function Logo() {
@@ -29,7 +30,7 @@ function Logo() {
 
 export default async function Home() {
   const session = await auth();
-  // const allPosts = await Post.findAll();
+  const allPosts = await Post.findAll();
   return (
     <div className="flex flex-col min-h-screen bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100 font-fude">
       {/* Header */}
@@ -71,44 +72,31 @@ export default async function Home() {
             gap-8
           "
         >
-          <article className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div className="mb-6">
-              <div className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2 tracking-widest uppercase">
-                Resolution
+          {allPosts.map((post) => (
+            <article
+              key={post.id}
+              className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="mb-6">
+                <div className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2 tracking-widest uppercase">
+                  Resolution
+                </div>
+                <div className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-4 border-b border-stone-100 dark:border-stone-700 pb-2">
+                  {post.title}
+                </div>
+                <div className="text-stone-600 dark:text-stone-300 leading-loose text-sm">
+                  {post.content}
+                </div>
               </div>
-              <div className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-4 border-b border-stone-100 dark:border-stone-700 pb-2">
-                毎日コードを書く！
-              </div>
-              <div className="text-stone-600 dark:text-stone-300 leading-loose text-sm">
-                人と関わってより色々な知識を共有したり、新しいツールや新しいコードのテンプレートなど作っていったりすることができたらいいなと、思います。
-              </div>
-            </div>
 
-            <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500 pt-4 mt-auto">
-              <span className="font-medium">Takoyaki</span>
-              <time className="font-sans">2026.01.01</time>
-            </div>
-          </article>
-
-          <article className="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div className="mb-6">
-              <div className="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2 tracking-widest uppercase">
-                Resolution
+              <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500 pt-4 mt-auto">
+                <span className="font-medium">{post.author_name}</span>
+                <time className="font-sans">
+                  {post.createdAt!.toLocaleDateString()}
+                </time>
               </div>
-              <div className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-4 border-b border-stone-100 dark:border-stone-700 pb-2">
-                新しい技術に挑戦する
-              </div>
-              <div className="text-stone-600 dark:text-stone-300 leading-loose text-sm">
-                新しい技術に挑戦することで、より良いコードを書くことができると思います。
-              </div>
-            </div>
-            <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500 pt-4 mt-auto">
-              <span className="font-medium">Uniproject</span>
-              <time className="font-sans">2026.01.02</time>
-            </div>
-          </article>
-
-          {/* ここから先、article を増やすだけで自動で縦に増える */}
+            </article>
+          ))}
         </section>
       </main>
 
