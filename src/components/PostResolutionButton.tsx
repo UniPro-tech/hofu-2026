@@ -1,8 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   sessionExists: boolean;
@@ -11,7 +10,6 @@ type Props = {
 export default function PostResolutionButton({ sessionExists }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState("");
-  const router = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {

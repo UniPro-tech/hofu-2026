@@ -1,7 +1,6 @@
-import { auth } from "@/auth";
 import Image from "next/image";
+import { auth } from "@/auth";
 import PostResolutionButton from "@/components/PostResolutionButton";
-import { Post } from "@/libs/post";
 
 /** ロゴ（白 / 黒 自動切替） */
 function Logo() {

@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     if (!content) {
       return NextResponse.json(
         { error: "content is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 

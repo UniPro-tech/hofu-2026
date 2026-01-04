@@ -1,6 +1,6 @@
-import { Session } from "next-auth";
-import { prisma } from "./prisma";
+import type { Session } from "next-auth";
 import { auth } from "@/auth";
+import { prisma } from "./prisma";
 
 export class Post {
   public id?: number;
@@ -17,7 +17,7 @@ export class Post {
     author_name: string,
     author_email: string,
     createdAt?: Date,
-    updatedAt?: Date
+    updatedAt?: Date,
   ) {
     this.content = content;
     this.title = title;
@@ -27,8 +27,8 @@ export class Post {
     this.author_email = author_email;
   }
 
-  public async save(): Promise<any> {
-    return prisma.post.create({
+  public async save(): Promise<void> {
+    await prisma.post.create({
       data: {
         id: this.id,
         content: this.content,
@@ -39,12 +39,13 @@ export class Post {
         updatedAt: this.updatedAt,
       },
     });
+    return;
   }
 
   public static async create(
     content: string,
     title: string,
-    session?: Session
+    session?: Session,
   ): Promise<Post> {
     let sessionTmp: Session | null | undefined = session;
     if (!session) {
@@ -62,39 +63,79 @@ export class Post {
       content,
       title,
       sessionTmp.user.name,
-      sessionTmp.user.email
+      sessionTmp.user.email,
     );
   }
 
-  public static async findAll(): Promise<any> {
-    return prisma.post.findMany({
+  public static async findAll(): Promise<Post[]> {
+    const list = await prisma.post.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
+    return Promise.resolve(
+      list.map(
+        (item) =>
+          new Post(
+            item.content,
+            item.title,
+            item.author_name,
+            item.author_email,
+            item.createdAt,
+            item.updatedAt,
+          ),
+      ),
+    );
   }
 
-  public static async findByAuthor(author_email: string): Promise<any> {
-    return prisma.post.findMany({
+  public static async findByAuthor(author_email: string): Promise<Post[]> {
+    const list = await prisma.post.findMany({
       where: {
         author_email: author_email,
       },
     });
+    return Promise.resolve(
+      list.map(
+        (item) =>
+          new Post(
+            item.content,
+            item.title,
+            item.author_name,
+            item.author_email,
+            item.createdAt,
+            item.updatedAt,
+          ),
+      ),
+    );
   }
 
-  public static async findById(id: number): Promise<any> {
-    return prisma.post.findUnique({
+  public static async findById(id: number): Promise<Post | null> {
+    const post = await prisma.post.findUnique({
       where: {
         id: id,
       },
     });
+    if (!post) {
+      return null;
+    }
+    return Promise.resolve(
+      new Post(
+        post.content,
+        post.title,
+        post.author_name,
+        post.author_email,
+        post.createdAt,
+        post.updatedAt,
+      ),
+    );
   }
 
-  public static async deleteById(id: number): Promise<any> {
-    return prisma.post.delete({
+  public static async deleteById(id: number): Promise<void> {
+    await prisma.post.delete({
       where: {
         id: id,
       },
     });
+    return;
   }
 }
