@@ -113,7 +113,7 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="text-center py-8 text-xs text-stone-400 dark:text-stone-600 border-t border-stone-200 dark:border-stone-800 mt-16 font-sans">
-        <div className="mb-2">Copyright 2026 Uniproject</div>
+        <div className="mb-2">Copyright &copy; 2026 Uniproject</div>
       </footer>
     </div>
   );
