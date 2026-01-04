@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import Image from "next/image";
 import PostResolutionButton from "@/components/PostResolutionButton";
+import { Post } from "@/libs/post";
 
 /** ロゴ（白 / 黒 自動切替） */
 function Logo() {
@@ -29,6 +30,7 @@ function Logo() {
 
 export default async function Home() {
   const session = await auth();
+  // const allPosts = await Post.findAll();
   return (
     <div className="flex flex-col min-h-screen bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100 font-fude">
       {/* Header */}
