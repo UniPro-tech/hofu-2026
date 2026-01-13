@@ -14,7 +14,7 @@ on:
       - "*.md"
       - ".vscode/**"
 jobs:
-  eslint:
+  biome:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     permissions:
@@ -36,9 +36,10 @@ jobs:
         with:
           reviewdog_version: latest
       - name: Run reviewdog with eslint
-        uses: reviewdog/action-eslint@v1
+        uses: mongolyy/reviewdog-action-biome@v2.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           filter_mode: diff_context
           fail_level: error
+          reporter: github-pr-review
           workdir: ${{ matrix.env }}
