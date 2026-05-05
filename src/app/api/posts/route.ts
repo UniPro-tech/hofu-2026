@@ -14,14 +14,14 @@ export async function POST(req: Request) {
     if (!content) {
       return NextResponse.json(
         { error: "content is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (content.length > MAX_CONTENT) {
       return NextResponse.json(
         { error: `content must be <= ${MAX_CONTENT} chars` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -39,8 +39,8 @@ export async function POST(req: Request) {
     const saved = await post.save();
 
     return NextResponse.json(saved, { status: 201 });
-  } catch (err: any) {
-    const message = err?.message || String(err) || "unknown error";
+  } catch (err) {
+    const message = (err as Error).message || String(err) || "unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -92,7 +92,7 @@ export default async function Home() {
               <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500 pt-4 mt-auto">
                 <span className="font-medium">{post.author_name}</span>
                 <time className="font-sans">
-                  {post.createdAt!.toLocaleDateString()}
+                  {post.createdAt?.toLocaleDateString()}
                 </time>
               </div>
             </article>
